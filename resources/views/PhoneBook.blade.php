@@ -7,6 +7,7 @@
       <router-view></router-view>
   </div>
   <Myfooter></Myfooter>
+  <Add></Add>
 </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
