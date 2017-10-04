@@ -25,3 +25,4 @@ Route::get('/PhoneBook/{name}', function(){
 
 
 Route::resource('phone', 'PhonbooksController');
+Route::post('/contacts', 'PhonbooksController@ListContacts');

@@ -15,7 +15,14 @@ class PhonbooksController extends Controller
     public function index()
     {
         //
+       
         return view('PhoneBook');
+    }
+
+    public function ListContacts()
+    {
+        $contacts = phonbooks::orderBy('name','ASC')->get();
+        return $contacts;
     }
 
     /**

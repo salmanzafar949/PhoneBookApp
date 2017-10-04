@@ -22,12 +22,12 @@
     <a>sources</a>
     <a>forks</a>
   </p> -->
-   <a class="panel-block is-active">
+   <a class="panel-block is-active" v-for="contacts,key in lists">
   <!--  <span class="panel-icon">
       <i class="fa fa-book"></i>
     </span> -->
     <span class="column is-9">
-    bulma
+      {{ contacts.name }}
     </span>
      <span class="has-text-danger panel-icon column is-1">
         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -88,8 +88,15 @@ export default{
     components:{Add},
     data(){
            return{
-               addActive:''
+               addActive:'',
+               lists:{},
+               errors:{}
            }
+    },
+    mounted(){
+               axios.post('/contacts',this.$data.list)
+              .then((response)=> this.lists = response.data)
+              .catch((error)=>console.log(this.errors = error.response.data.errors))
     },
     methods:{
         // bind the function to Add vue using props

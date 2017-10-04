@@ -42544,23 +42544,40 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("nav", { staticClass: "panel column is-offset-2 is-8" }, [
-        _c("p", { staticClass: "panel-heading" }, [
-          _vm._v("\r\n    PhoneBook\r\n     "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-primary is-outlined",
-              on: { click: _vm.openaddmodal }
-            },
-            [_vm._v("\r\n      Add new contact\r\n    ")]
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1)
-      ]),
+      _c(
+        "nav",
+        { staticClass: "panel column is-offset-2 is-8" },
+        [
+          _c("p", { staticClass: "panel-heading" }, [
+            _vm._v("\r\n    PhoneBook\r\n     "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-primary is-outlined",
+                on: { click: _vm.openaddmodal }
+              },
+              [_vm._v("\r\n      Add new contact\r\n    ")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.lists, function(contacts, key) {
+            return _c("a", { staticClass: "panel-block is-active" }, [
+              _c("span", { staticClass: "column is-9" }, [
+                _vm._v("\r\n      " + _vm._s(contacts.name) + "\r\n    ")
+              ]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true)
+            ])
+          })
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("Add", {
         attrs: { openmodal: _vm.addActive },
@@ -42592,26 +42609,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "panel-block is-active" }, [
-      _c("span", { staticClass: "column is-9" }, [
-        _vm._v("\r\n    bulma\r\n    ")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "has-text-danger panel-icon column is-1" }, [
+    return _c(
+      "span",
+      { staticClass: "has-text-danger panel-icon column is-1" },
+      [
         _c("i", {
           staticClass: "fa fa-trash",
           attrs: { "aria-hidden": "true" }
         })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "has-text-info panel-icon column is-1" }, [
-        _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "has-text-primary panel-icon column is-1" }, [
-        _c("i", { staticClass: "fa fa-eye", attrs: { "aria-hidden": "true" } })
-      ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "has-text-info panel-icon column is-1" }, [
+      _c("i", { staticClass: "fa fa-edit", attrs: { "aria-hidden": "true" } })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
+      { staticClass: "has-text-primary panel-icon column is-1" },
+      [_c("i", { staticClass: "fa fa-eye", attrs: { "aria-hidden": "true" } })]
+    )
   }
 ]
 render._withStripped = true
@@ -43016,8 +43041,19 @@ var Add = __webpack_require__(58);
     components: { Add: Add },
     data: function data() {
         return {
-            addActive: ''
+            addActive: '',
+            lists: {},
+            errors: {}
         };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.post('/contacts', this.$data.list).then(function (response) {
+            return _this.lists = response.data;
+        }).catch(function (error) {
+            return console.log(_this.errors = error.response.data.errors);
+        });
     },
 
     methods: {
