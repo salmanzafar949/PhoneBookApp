@@ -25,7 +25,7 @@ class ValidatePhonebookData extends FormRequest
     {
         return [
             //
-            'name' => 'required|max:255|',
+            'name' => 'required|max:255|unique:phonbooks',
             'phoneno' => 'required|numeric|unique:phonbooks',
             'email' => 'required|email|unique:phonbooks',
         ];

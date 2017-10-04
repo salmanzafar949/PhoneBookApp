@@ -42805,7 +42805,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "modal-card" }, [
       _c("header", { staticClass: "modal-card-head" }, [
-        _c("p", { staticClass: "modal-card-title" }, [_vm._v("Modal title")]),
+        _c("p", { staticClass: "modal-card-title" }, [_vm._v("Add Contacts")]),
         _vm._v(" "),
         _c("button", {
           staticClass: "delete",
