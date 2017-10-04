@@ -12,7 +12,7 @@
     <a class="navbar-item" href="">
       About
     </a>
-    </div>
+  </div>
     <button class="button navbar-burger">
       <span></span>
       <span></span>
