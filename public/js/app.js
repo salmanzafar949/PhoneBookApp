@@ -42804,6 +42804,7 @@ var render = function() {
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.name },
               attrs: { type: "text", placeholder: "Name of the person" },
               domProps: { value: _vm.list.name },
               on: {
@@ -42815,7 +42816,13 @@ var render = function() {
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.name
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.name[0]))
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -42827,23 +42834,30 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.list.no,
-                  expression: "list.no"
+                  value: _vm.list.phoneno,
+                  expression: "list.phoneno"
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.phoneno },
               attrs: { type: "number", placeholder: "Number" },
-              domProps: { value: _vm.list.no },
+              domProps: { value: _vm.list.phoneno },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.list.no = $event.target.value
+                  _vm.list.phoneno = $event.target.value
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.phoneno
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.phoneno[0]))
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "field" }, [
@@ -42860,6 +42874,7 @@ var render = function() {
                 }
               ],
               staticClass: "input",
+              class: { "is-danger": _vm.errors.email },
               attrs: { type: "email", placeholder: "Enter email" },
               domProps: { value: _vm.list.email },
               on: {
@@ -42871,7 +42886,13 @@ var render = function() {
                 }
               }
             })
-          ])
+          ]),
+          _vm._v(" "),
+          _vm.errors.email
+            ? _c("small", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.email[0]))
+              ])
+            : _vm._e()
         ])
       ]),
       _vm._v(" "),
@@ -43052,6 +43073,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -43059,10 +43083,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             list: {
-                name: '',
-                no: '',
-                email: ''
-            }
+                email: '',
+                phoneno: '',
+                name: ''
+
+            },
+            errors: {}
         };
     },
 
@@ -43071,11 +43097,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('closeRequest');
         },
         save: function save() {
+            var _this = this;
 
             axios.post('phone', this.$data.list).then(function (response) {
                 return console.log(response);
             }).catch(function (error) {
-                return console.log(error);
+                return console.log(_this.errors = error.response.data.errors);
             });
         }
     }

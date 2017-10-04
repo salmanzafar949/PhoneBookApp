@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Phonbooks;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ValidatePhonebookData;
 class PhonbooksController extends Controller
 {
     /**
@@ -34,19 +34,19 @@ class PhonbooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidatePhonebookData $request)
     {
         //
-        // return $request->email;
+          //return $request->phoneno;
         $phoneApp = new Phonbooks;
         $phoneApp->name = $request->name;
         $phoneApp->email = $request->email;
-        $phoneApp->phoneno = $request->no;
+        $phoneApp->phoneno = $request->phoneno;
         $phoneApp->save();
         // Phonbooks::create([
         //       $request->all()
         // ]);
-        // return $request->all();
+       // return $request->all();
     }
 
     /**

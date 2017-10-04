@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Phonbooks extends Model
 {
     //
+    protected $fillable= [
+        
+    ];
 }
