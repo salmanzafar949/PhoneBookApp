@@ -19,3 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{name}', function(){
+    return redirect('/');
+})->where('name','[A-Za-z]+');
