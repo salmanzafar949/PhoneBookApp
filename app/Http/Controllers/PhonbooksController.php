@@ -15,6 +15,7 @@ class PhonbooksController extends Controller
     public function index()
     {
         //
+        return view('PhoneBook');
     }
 
     /**
@@ -36,6 +37,16 @@ class PhonbooksController extends Controller
     public function store(Request $request)
     {
         //
+        // return $request->email;
+        $phoneApp = new Phonbooks;
+        $phoneApp->name = $request->name;
+        $phoneApp->email = $request->email;
+        $phoneApp->phoneno = $request->no;
+        $phoneApp->save();
+        // Phonbooks::create([
+        //       $request->all()
+        // ]);
+        // return $request->all();
     }
 
     /**

@@ -12,13 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('PhoneBook');
+    return view('welcome');
 });
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/{name}', function(){
+Route::get('/PhoneBook/{name}', function(){
     return redirect('/');
 })->where('name','[A-Za-z]+');
+
+
+Route::resource('phone', 'PhonbooksController');

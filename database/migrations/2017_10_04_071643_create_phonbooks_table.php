@@ -16,7 +16,7 @@ class CreatePhonbooksTable extends Migration
         Schema::create('phonbooks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('phoneno');
+            $table->bigInteger('phoneno');
             $table->string('email');
             $table->timestamps();
         });
